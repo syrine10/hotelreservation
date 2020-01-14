@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@FeignClient(name = "Room-service", url = "localhost:4700")
+@FeignClient(name = "room-service", url = "localhost:4090")
 public interface MicroserviceRoomProxy {
 
    @GetMapping(value="rooms")
