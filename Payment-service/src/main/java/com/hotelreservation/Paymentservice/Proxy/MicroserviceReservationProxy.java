@@ -21,6 +21,8 @@ public interface MicroserviceReservationProxy {
     public Optional<ReservationBean> getReservation(@PathVariable int id);
     @DeleteMapping(value="rooms/{id}")
     public void deleteReservation(@PathVariable Long id);
+    @PutMapping(value="/reservations")
+    public ResponseEntity<ReservationBean> updateReservation(@RequestBody ReservationBean reservation);
 
 }
 
