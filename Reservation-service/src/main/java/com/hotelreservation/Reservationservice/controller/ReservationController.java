@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,6 +15,14 @@ public class ReservationController {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @GetMapping(value = "/reservations")
+    public List<Reservation> getallReservation(){
+       List<Reservation> reservation = reservationRepository.findAll();
+        return reservation ;
+    }
+
+
 
     @PostMapping(value = "/reservations")
     public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation
@@ -27,12 +36,18 @@ public class ReservationController {
     }
 
     @GetMapping(value = "/reservations/{id}")
-    public Optional<Reservation> getReservation(@PathVariable int id){
+    public Optional<Reservation> getReservation(@PathVariable Long id){
 
-        Optional<Reservation> reservation = reservationRepository.findById(id);
+        Optional<Reservation> reservation = reservationRepository.findById(id.intValue());
 
         //if(!reservation.isPresent()) throw new ReservatioNotFoundException("Cette reservation n'existe pas");
 
         return reservation;
+    }
+
+    @DeleteMapping(value="rooms/{id}")
+    public void deleteReservation(@PathVariable Long id){
+        Optional<Reservation> reservation = reservationRepository.findById(id.intValue());
+        reservationRepository.deleteById(id.intValue());
     }
 }
