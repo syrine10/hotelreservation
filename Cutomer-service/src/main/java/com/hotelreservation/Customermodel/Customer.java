@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idCust;
     private String nom;
     private String prenom;
     private String adresse;
