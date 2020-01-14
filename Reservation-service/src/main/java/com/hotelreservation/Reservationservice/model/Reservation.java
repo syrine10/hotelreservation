@@ -16,6 +16,7 @@ public class Reservation {
     private long id;
 
     private Integer roomId;
+    private  long customerId ;
 
     private Date dateReservation;
 
@@ -26,9 +27,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(long id, Integer roomId, Date dateReservation, Integer type, Boolean roomState) {
+    public Reservation(long id, Integer roomId,long customerId, Date dateReservation, Integer type, Boolean roomState) {
         this.id = id;
         this.roomId = roomId;
+        this.customerId=customerId ;
         this.dateReservation = dateReservation;
         this.type = type;
         this.roomState = roomState;
@@ -46,8 +48,16 @@ public class Reservation {
         return roomId;
     }
 
-    public void setProductId(Integer roomId) {
+    public void setRoomId(Integer roomId) {
         this.roomId = roomId;
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 
     public Date getDateReservation() {
@@ -79,6 +89,7 @@ public class Reservation {
         return "Reservation{" +
                 "id=" + id +
                 ", roomId=" + roomId +
+                "customerId=" + customerId +
                 ", dateReservation=" + dateReservation +
                 ", type=" + type +
                 ", roomState=" + roomState +
