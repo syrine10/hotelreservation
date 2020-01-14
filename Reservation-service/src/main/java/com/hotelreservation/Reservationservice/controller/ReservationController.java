@@ -1,5 +1,11 @@
 package com.hotelreservation.Reservationservice.controller;
 
+import com.hotelreservation.Reservationservice.Beans.RoomBean;
+import com.hotelreservation.Reservationservice.Proxy.MicroserviceRoomProxy;
+import com.hotelreservation.Reservationservice.Proxy.MicroservicePaymentProxy;
+
+import com.hotelreservation.Reservationservice.Proxy.MicroservicePaymentProxy;
+import com.hotelreservation.Reservationservice.Proxy.MicroserviceRoomProxy;
 import com.hotelreservation.Reservationservice.model.Reservation;
 import com.hotelreservation.Reservationservice.repository.ReservationRepository;
 import com.hotelreservation.Reservationservice.service.ReservationService;
@@ -8,8 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
+
+
 
 @RestController
 public class ReservationController {
@@ -17,6 +26,10 @@ public class ReservationController {
     @Autowired
     ReservationRepository reservationRepository;
     ReservationService reservationService ;
+
+    MicroservicePaymentProxy microservicePaymentProxy ;
+    MicroserviceRoomProxy microserviceRoomProxy ;
+
 
     @GetMapping(value = "/reservations")
     public List<Reservation> getallReservation(){
@@ -28,12 +41,17 @@ public class ReservationController {
 
     @PostMapping(value = "/reservations")
     public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation){
-        List<Reservation> listeReserv=reservationRepository.findAll() ;
+        //List<Reservation> listeReserv=reservationRepository.findAll() ;
         int i=0 ;
-        while (i< listeReserv.size()) {
+        while (i< reservationRepository.findAll().size()) {
             if ((reservation.getDateReservationfin().compareTo(reservationRepository.findAll().get(i).getDateReservationdebut())<0)&(reservation.getDateReservationdebut().compareTo(reservationRepository.findAll().get(i).getDateReservationfin())>0)) {
-                Reservation newReservtion = reservationService.addReservation(reservation);
-                break;
+                if(reservation.getType()==reservationRepository.findAll().get(i).getType()) {
+                    Reservation newReservation = reservationService.addReservation(reservation);
+                    microservicePaymentProxy.payerunereservation(reservationRepository.findAll().get(i).getId());
+
+
+                    break;
+                }
             }
             i++;
         }
