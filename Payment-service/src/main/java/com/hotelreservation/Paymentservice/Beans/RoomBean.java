@@ -13,8 +13,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class RoomBean {
     private Long id ;
-    private String name ;
-    private BigDecimal price ;
-    private int stockQuantity;
+    private int nbBed;
+    private int number ;
+    private int price ;
+    private boolean state ;
+
 }
 

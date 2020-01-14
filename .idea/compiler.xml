@@ -23,6 +23,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Cutomer-service" options="-parameters" />
       <module name="Payment-service" options="-parameters" />
+      <module name="Reservation-service" options="-parameters" />
+      <module name="room-service" options="-parameters" />
     </option>
   </component>
 </project>

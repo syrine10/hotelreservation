@@ -12,11 +12,17 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-@FeignClient(name = "clientMicroservice", url = "localhost:8080")
+@FeignClient(name = "Customer-service", url = "localhost:8080")
 public interface MicroserviceCustomerProxy  {
-    @GetMapping(value = "/client/{id}")
-    Optional<CustomerBean> getClient(@PathVariable Long id);
-    @PostMapping(value="/client")
-    void addClient(@RequestBody CustomerBean client);
+    @GetMapping(value = "clientPay/{idres}")
+    void pay (Long idres);
+    @GetMapping(value = "/customer/{id}")
+    public CustomerBean getCust (@PathVariable Long id);
+    @GetMapping ( value = "reservations/{idCust}")
+    List<ReservationBean> getAllReservation (@PathVariable Long idCust);
+    @PostMapping(value = "customer")
+    CustomerBean addClient (@RequestBody CustomerBean customer) ;
+    @PostMapping(value = "Reserver")
+    ReservationBean Reserver(@RequestBody  ReservationBean res) ;
 }
 

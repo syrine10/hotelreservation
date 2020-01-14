@@ -9,8 +9,10 @@ import java.math.BigDecimal;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
 public class CustomerBean {
-    private long id;
-    private String name;
-    private BigDecimal solde;
+    private long idCust;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private BigDecimal age;
 }
 

@@ -12,11 +12,11 @@ import java.util.Date;
 @AllArgsConstructor @ToString
 public class ReservationBean {
     private Long id;
-    private Long idClient;
-    private Long idProduct;
-    private Date dateCommande;
-    private BigDecimal amount ;
-    private int quantity ;
-    private Boolean isPayed=false;
+    private Long customerId;
+    private Long roomId;
+    private Date dateReservationdebut;
+    private Date dateReservationfin ;
+
+    //private Boolean isPayed=false;
 
 }
