@@ -1,6 +1,5 @@
 package com.hotelreservation.Reservationservice.service;
 
-//import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import com.hotelreservation.Reservationservice.model.Reservation;
 import com.hotelreservation.Reservationservice.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class ReservationService {
 
     public Optional<Reservation> findById(Long id) {
 
-        Optional<Reservation> reservation = reservationRepository.findById(id.intValue());
+        Optional<Reservation> reservation = reservationRepository.findById(id);
 
         //if (!reservation.isPresent()) {throw new RerservationNotFoundException("reservation not found");}
 
@@ -40,7 +39,7 @@ public class ReservationService {
     }
 
     public void deletereservation (Long id){
-        reservationRepository.deleteById(id.intValue());
+        reservationRepository.deleteById(id);
     }
 
     public List<Reservation> getReservationsOfClient(Long id){
