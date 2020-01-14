@@ -8,5 +8,11 @@ import java.util.List;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {
-    List<Room> getRoomByNbBed(int nb);
+     boolean findByNbBed(int nb);
+    boolean findByNumber(int nb);
+    List<Room> getByState(boolean state);
+    boolean findByPrice(int price);
+    int getByPrice(int price);
+    Room getByNumber(int nb);
+    List<Room> getByNbBed(int nb);
 }

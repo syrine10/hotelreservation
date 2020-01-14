@@ -31,7 +31,7 @@ public class ReservationController {
         List<Reservation> listeReserv=reservationRepository.findAll() ;
         int i=0 ;
         while (i< listeReserv.size()) {
-            if (reservation.getDateReservationfin().compareTo(reservationRepository.findAll().get(i).getDateReservationdebut())<0) {
+            if ((reservation.getDateReservationfin().compareTo(reservationRepository.findAll().get(i).getDateReservationdebut())<0)&(reservation.getDateReservationdebut().compareTo(reservationRepository.findAll().get(i).getDateReservationfin())>0)) {
                 Reservation newReservtion = reservationService.addReservation(reservation);
                 break;
             }

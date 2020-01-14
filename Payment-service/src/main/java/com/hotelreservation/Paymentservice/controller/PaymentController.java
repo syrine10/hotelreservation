@@ -22,19 +22,9 @@ public class PaymentController {
     @Autowired
     PaymentRepository paymentRepository;
 
-    @GetMapping(value = "/payment/{commandeId}")
-    public void  payerUneCommande(@PathVariable Long commandeId){
-        paymentService.payerCommande(commandeId);
+    @GetMapping(value = "/payment/{reservationId}")
+    public void  payerUnereservation(@PathVariable Long reservationId){
+        paymentService.payerReservation(reservationId);
     }
-    @GetMapping(value = "/testp")
-    public List<RoomBean> TestProduit()
-    {
-        return paymentService.TestProduit();
-    }
-    @GetMapping(value = "/testc")
-    public List<ReservationBean> TestCommande()
-    {
-        return paymentService.TestCommande();
-    }
-
+    
 }
