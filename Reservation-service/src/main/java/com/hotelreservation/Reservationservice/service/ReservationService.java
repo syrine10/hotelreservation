@@ -3,6 +3,7 @@ package com.hotelreservation.Reservationservice.service;
 import com.hotelreservation.Reservationservice.model.Reservation;
 import com.hotelreservation.Reservationservice.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
