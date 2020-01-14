@@ -1,6 +1,6 @@
 package com.hotelreservation.Reservationservice.service;
 
-
+//import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import com.hotelreservation.Reservationservice.model.Reservation;
 import com.hotelreservation.Reservationservice.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,13 @@ public class ReservationService {
 
         Optional<Reservation> reservation = reservationRepository.findById(id.intValue());
 
-        //if (!reservation.isPresent()) {throw new CommandeNotFoundException("reservation not found");}
+        //if (!reservation.isPresent()) {throw new RerservationNotFoundException("reservation not found");}
 
         return reservation ;
     }
 
     public Reservation addReservation(Reservation reservation){
+
         return reservationRepository.save(reservation);
     }
 
