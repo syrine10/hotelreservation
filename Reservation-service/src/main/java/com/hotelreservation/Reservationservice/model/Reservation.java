@@ -18,22 +18,25 @@ public class Reservation {
     private Integer roomId;
     private  long customerId ;
 
-    private Date dateReservation;
+    private Date dateReservationdebut;
 
-    private Integer type;
+    private Date dateReservationfin;
 
-    private Boolean roomState;
+    //private Integer type;
+
+    //private Boolean roomState;
 
     public Reservation() {
     }
 
-    public Reservation(long id, Integer roomId,long customerId, Date dateReservation, Integer type, Boolean roomState) {
+    public Reservation(long id, Integer roomId,long customerId, Date dateReservationdebut,Date dateReservationfin) {
         this.id = id;
         this.roomId = roomId;
         this.customerId=customerId ;
-        this.dateReservation = dateReservation;
-        this.type = type;
-        this.roomState = roomState;
+        this.dateReservationdebut = dateReservationdebut;
+        this.dateReservationfin = dateReservationfin;
+
+
     }
 
     public long getId() {
@@ -60,29 +63,23 @@ public class Reservation {
         this.customerId = customerId;
     }
 
-    public Date getDateReservation() {
-        return dateReservation;
+    public Date getDateReservationdebut() {
+        return dateReservationdebut;
     }
 
-    public void setDateReservation(Date dateReservation) {
-        this.dateReservation = dateReservation;
+    public void setDateReservationdebut(Date dateReservationdebut) {
+        this.dateReservationdebut = dateReservationdebut;
     }
 
-    public Integer getType() {
-        return type;
+    public Date getDateReservationfin() {
+        return dateReservationfin;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setDateReservationfin(Date dateReservationfin) {
+        this.dateReservationfin = dateReservationfin;
     }
 
-    public Boolean getRoomState() {
-        return roomState;
-    }
 
-    public void setRoomState(Boolean roomState) {
-        this.roomState = roomState;
-    }
 
     @Override
     public String toString() {
@@ -90,9 +87,8 @@ public class Reservation {
                 "id=" + id +
                 ", roomId=" + roomId +
                 "customerId=" + customerId +
-                ", dateReservation=" + dateReservation +
-                ", type=" + type +
-                ", roomState=" + roomState +
+                ", dateReservationdebut=" + dateReservationdebut +
+                ", dateReservationfin=" + dateReservationfin +
                 '}';
     }
 }
