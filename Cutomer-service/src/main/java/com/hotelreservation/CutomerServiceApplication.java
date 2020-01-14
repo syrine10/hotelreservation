@@ -1,4 +1,4 @@
-package com.hotelreservation.Cutomerservice;
+package com.hotelreservation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
