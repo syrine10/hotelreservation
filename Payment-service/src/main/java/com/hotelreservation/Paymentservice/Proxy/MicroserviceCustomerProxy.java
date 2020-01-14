@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-@FeignClient(name = "Cutomer-service", url = "localhost:4091")
+@FeignClient(name = "cutomer-service", url = "localhost:4091")
 public interface MicroserviceCustomerProxy  {
     @GetMapping(value = "clientPay/{idres}")
     void pay (Long idres);
