@@ -30,22 +30,21 @@ public class PaymentService {
     public void payerReservation(Long idReservation)
     {
 
-        ReservationBean reservation= reservationLink.getReservation();
+        ReservationBean reservation= reservationLink.getReservation(idReservation);
 
-        Long idClient = reservation.getCustomerId();
-        System.out.println(idClient);
+        Long idCustomer = reservation.getCustomerId();
+        System.out.println(idCustomer);
 
         Payment payment =new Payment();
 
         Optional <CustomerBean> client= Optional.ofNullable(customerLink.getCust(idClient));
 
-        //comparer le solde du client au valeur de la commande
 
 
     }
     public List<RoomBean> TestRoom()
     {
-        return roomLink.getAllProducts();
+        return roomLink.getAllRooms();
     }
     public List <ReservationBean> TestReservation()
     {
