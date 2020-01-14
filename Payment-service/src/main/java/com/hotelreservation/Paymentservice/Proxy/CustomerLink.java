@@ -12,8 +12,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+<<<<<<< HEAD:Payment-service/src/main/java/com/hotelreservation/Paymentservice/Proxy/CustomerLink.java
 @FeignClient(name = "Customer-service", url = "localhost:8080")
 public interface CustomerLink {
+=======
+@FeignClient(name = "cutomer-service", url = "localhost:4091")
+public interface MicroserviceCustomerProxy  {
+>>>>>>> 7a290330b8220ac7a04454db8835a15146cf3e18:Payment-service/src/main/java/com/hotelreservation/Paymentservice/Proxy/MicroserviceCustomerProxy.java
     @GetMapping(value = "clientPay/{idres}")
     void pay (Long idres);
     @GetMapping(value = "/customer/{id}")

@@ -16,7 +16,7 @@ public class RoomController {
     @Autowired
     RoomRepository roomRepository;
     @GetMapping(value="rooms/{id}")
-    ResponseEntity<Room> getProduct (@PathVariable Long  id) throws NoAvailableRoomException {
+    ResponseEntity<Room> getRoom (@PathVariable Long  id) throws NoAvailableRoomException {
 
 
         Room room = roomRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED,"room not found = "+id));
@@ -28,10 +28,13 @@ public class RoomController {
 
 
     @GetMapping(value="rooms")
-    List<Room> getAllProducts () {
+    List<Room> getAllRooms () {
 
-        List<Room> room = roomRepository.findAll();
-        return room;
+
+        List<Room> rooms = roomRepository.findAll();
+        return rooms;
+
+
 
 
     }
@@ -42,6 +45,14 @@ public class RoomController {
         Room newRoom = roomRepository.save(room);
         return ResponseEntity.ok().body(newRoom);
     }
+
+    @GetMapping(value="rooms/available")
+    List<Room>  getAvailableRoom (){
+
+        List <Room> rooms = roomRepository.getByState(true);
+        return rooms;
+    }
+
 
     @DeleteMapping(value="rooms/{id}")
     public void deleteRoom(@PathVariable Long id) throws  ResponseStatusException {
