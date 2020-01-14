@@ -22,9 +22,13 @@ public interface MicroserviceRoomProxy {
     @GetMapping(value="rooms/{id}")
     ResponseEntity<RoomBean> getProduct (@PathVariable Long  id) throws ResourceNotFoundException ;
 
-        @PostMapping(value = "rooms")
+    @PostMapping(value = "rooms")
    ResponseEntity<RoomBean> addNewRoom (@RequestBody RoomBean room) ;
+   
     @DeleteMapping(value="rooms/{id}")
     public void deleteRoom(@PathVariable Long id) throws  ResponseStatusException;
+   
+   @GetMapping(value="rooms/available")
+    List<Room>  getAvailableRoom ();
 }
 
