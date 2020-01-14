@@ -32,7 +32,7 @@ public class ReservationController {
         int i=0 ;
         while (i< listeReserv.size()) {
             if (reservation.getDateReservationfin().compareTo(reservationRepository.findAll().get(i).getDateReservationdebut())<0) {
-                Reservation newReservtion = reservationRepository.save(reservation);
+                Reservation newReservtion = reservationService.addReservation(reservation);
                 break;
             }
             i++;
@@ -45,7 +45,7 @@ public class ReservationController {
     @GetMapping(value = "/reservations/{id}")
     public Optional<Reservation> getReservation(@PathVariable Long id){
 
-        Optional<Reservation> reservation = reservationRepository.findById(id.intValue());
+        Optional<Reservation> reservation = reservationService.findById(id);
 
         //if(!reservation.isPresent()) throw new ReservatioNotFoundException("Cette reservation n'existe pas");
 
@@ -55,7 +55,7 @@ public class ReservationController {
     @DeleteMapping(value="rooms/{id}")
     public void deleteReservation(@PathVariable Long id){
         Optional<Reservation> reservation = reservationRepository.findById(id.intValue());
-        reservationRepository.deleteById(id.intValue());
+        reservationService.deletereservation(id);
     }
 
     @PutMapping(value="/reservations")
