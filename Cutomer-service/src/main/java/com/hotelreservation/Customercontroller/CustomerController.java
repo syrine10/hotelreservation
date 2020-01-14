@@ -17,7 +17,7 @@ public class CustomerController {
     @Autowired
     CustomerService custService ;
 
-    @GetMapping(value = "clientPay/{idres}")
+    @GetMapping(value = "customerPay/{idres}")
     void pay (Long idres){
         custService.payerRes (idres);
     }
@@ -33,7 +33,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "customer")
-    Customer addClient (@RequestBody Customer customer){
+    Customer addCustomer (@RequestBody Customer customer){
 
         return custService.addCustomer(customer);
     }

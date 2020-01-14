@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "Reservation-service", url = "localhost:4701")
+@FeignClient(name = "Reservation-service", url = "localhost:8080")
 public interface ReservationLink {
 
     @GetMapping(value = "/reservations/{id}")
@@ -16,12 +16,12 @@ public interface ReservationLink {
 
 
     @PutMapping(value = "/reservations")
-    public ResponseEntity<Reservation> updatereservation(@RequestBody Reservation commande);
+    public ResponseEntity<Reservation> updatereservation(@RequestBody Reservation res);
 
 
 
     @PostMapping(value = "/reservations" )
-    public ResponseEntity<Reservation> Reserver (@RequestBody Reservation commande);
+    public ResponseEntity<Reservation> Reserver (@RequestBody Reservation res);
 
 
     @DeleteMapping(value = "/reservations/{id}")
