@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@FeignClient(name = "Reservation-service", url = "localhost:4093")
+@FeignClient(name = "reservation-service", url = "localhost:4093")
 public interface MicroserviceReservationProxy {
 
     @GetMapping(value = "/reservations")
