@@ -19,7 +19,7 @@ public class CustomerService {
     ReservationLink resLink ;
 
     @Autowired
-    private PaymentLink payLink;
+    PaymentLink payLink;
 
 
 
