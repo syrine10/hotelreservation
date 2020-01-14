@@ -50,7 +50,7 @@ public class PaymentService {
             System.out.println(quantity);
             Long idProduit = commande.getIdProduct();
             System.out.println(idProduit);
-            ProduitBean produit= microserviceRoomProxy.getProduct(idProduit).getBody();
+            RoomBean produit= microserviceRoomProxy.getProduct(idProduit).getBody();
             produit.setStockQuantity(produit.getStockQuantity()-quantity);
             microserviceRoomProxy.addproduct(produit);
 
