@@ -1,16 +1,17 @@
 package com.hotelreservation.Paymentservice.service;
 
-import com.hotelreservation.Paymentservice.Proxy.MicroserviceReservationProxy;
+import com.hotelreservation.Paymentservice.Proxy.ReservationLink;
 import com.hotelreservation.Paymentservice.repository.PaymentRepository;
 import com.hotelreservation.Paymentservice.Beans.CustomerBean;
 import com.hotelreservation.Paymentservice.Beans.ReservationBean;
 import com.hotelreservation.Paymentservice.Beans.RoomBean;
 import com.hotelreservation.Paymentservice.model.Payment;
-import com.hotelreservation.Paymentservice.Proxy.MicroserviceCustomerProxy;
-import com.hotelreservation.Paymentservice.Proxy.MicroserviceRoomProxy;
+import com.hotelreservation.Paymentservice.Proxy.CustomerLink;
+import com.hotelreservation.Paymentservice.Proxy.RoomLink;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,57 +22,34 @@ public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
     @Autowired
-    private MicroserviceReservationProxy microserviceReservationProxy;
+    private ReservationLink reservationLink;
     @Autowired
-    private MicroserviceRoomProxy microserviceRoomProxy;
+    private RoomLink roomLink;
     @Autowired
-    private MicroserviceCustomerProxy microserviceCustomerProxy;
-    public void payerCommande(Long idCommande)
+    private CustomerLink customerLink;
+    public void payerReservation(Long idReservation)
     {
-        //avoir commande en utilisant id commande
-        ReservationBean commande=microserviceReservationProxy.getCommande(idCommande).getBody();
-        //consulter idClient
-        Long idClient = commande.getIdClient();
+
+        ReservationBean reservation= reservationLink.getReservation();
+
+        Long idClient = reservation.getCustomerId();
         System.out.println(idClient);
-        //
+
         Payment payment =new Payment();
-        System.out.println("goooooo gooooo");
-        Optional <CustomerBean> client= microserviceCustomerProxy.getClient(idClient);
-        //solde du client
-        BigDecimal soldeClient= client.get().getSolde();
-        System.out.println(soldeClient);
+
+        Optional <CustomerBean> client= Optional.ofNullable(customerLink.getCust(idClient));
+
         //comparer le solde du client au valeur de la commande
-        if(soldeClient.compareTo(commande.getAmount())==1) {
-            System.out.println("goooooollllll gooooollllll");
-            commande.setIsPayed(true);
-            ResponseEntity<ReservationBean> comandePassed= microserviceReservationProxy.updateCommande(commande);
 
-            int quantity = commande.getQuantity();
-            System.out.println(quantity);
-            Long idProduit = commande.getIdProduct();
-            System.out.println(idProduit);
-            RoomBean produit= microserviceRoomProxy.getProduct(idProduit).getBody();
-            produit.setStockQuantity(produit.getStockQuantity()-quantity);
-            microserviceRoomProxy.addproduct(produit);
 
-            CustomerBean clientb = microserviceCustomerProxy.getClient(idClient).get();
-            clientb.setSolde(soldeClient.subtract(commande.getAmount()));
-            microserviceCustomerProxy.addClient(clientb);
-
-            payment.setQuantity(quantity);
-            payment.setIdCommande(idCommande);
-            payment.setIdClient(idClient);
-            payment.setIdProduit(idProduit);
-            paymentRepository.save(payment);
-        }
     }
-    public List<RoomBean> TestProduit()
+    public List<RoomBean> TestRoom()
     {
-        return microserviceRoomProxy.getAllProducts();
+        return roomLink.getAllProducts();
     }
-    public List <ReservationBean> TestCommande()
+    public List <ReservationBean> TestReservation()
     {
-        return microserviceReservationProxy.allCommandes();
+        return reservationLink.getallReservation();
     }
 }
 

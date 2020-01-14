@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @FeignClient(name = "Room-service", url = "localhost:4700")
-public interface MicroserviceRoomProxy {
+public interface RoomLink {
 
    @GetMapping(value="rooms")
    List<RoomBean> getAllProducts ();

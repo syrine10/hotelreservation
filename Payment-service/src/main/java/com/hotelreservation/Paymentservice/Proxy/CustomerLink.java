@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @FeignClient(name = "Customer-service", url = "localhost:8080")
-public interface MicroserviceCustomerProxy  {
+public interface CustomerLink {
     @GetMapping(value = "clientPay/{idres}")
     void pay (Long idres);
     @GetMapping(value = "/customer/{id}")

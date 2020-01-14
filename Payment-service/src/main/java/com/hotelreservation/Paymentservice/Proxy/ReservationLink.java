@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @FeignClient(name = "Reservation-service", url = "localhost:4701")
-public interface MicroserviceReservationProxy {
+public interface ReservationLink {
 
     @GetMapping(value = "/reservations")
     public List<ReservationBean> getallReservation();
